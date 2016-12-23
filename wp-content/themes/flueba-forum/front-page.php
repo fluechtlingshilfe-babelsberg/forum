@@ -7,21 +7,31 @@
 </div>
 
 <div class="row">
-<?php
-$categories = get_terms();
-foreach ($categories as $category) { ?>
-    <div class="col-sm-3">
-	<h2><?= $category->name ?></h2>
-
+    <div class="col-md-9">
+	<div class="row">
 	<?php
-	    $posts = query_posts(array('cat' => $category->term_id));
-	    while (have_posts()) {
-		the_post();
-		the_card();
-	    } ?>
-	    <a href="<?= get_category_link($category) ?>" class="btn btn-sm btn-outline-primary">Mehr Einträge ...</a>
+	$categories = get_terms(array(
+	    'taxonomy' => 'category',
+	    'hide_empty' => true
+	));
+	foreach ($categories as $category) { ?>
+	    <div class="col-sm-4 mb-3">
+		<h3><?= $category->name ?></h3>
+
+		<?php
+		    $posts = query_posts(array('cat' => $category->term_id));
+		    while (have_posts()) {
+			the_post();
+			the_card();
+		    } ?>
+		    <a href="<?= get_category_link($category) ?>" class="btn btn-sm btn-outline-primary">Mehr Einträge ...</a>
+	    </div>
+	<?php } ?>
+	</div>
     </div>
-<?php } ?>
+    <div class="col-md-3">
+	<?php get_sidebar() ?>
+    </div>
 </div>
 
 <?php get_footer() ?>

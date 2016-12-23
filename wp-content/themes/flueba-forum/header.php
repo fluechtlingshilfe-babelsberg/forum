@@ -8,17 +8,13 @@
     <body>
 	<div class="container">
 	    <div class="cleafix">
-		<ul class="nav nav-pills float-sm-right">
-		    <li class="nav-item">
-			<a class="nav-link active" href="#">Forum</a>
-		    </li>
-		    <li class="nav-item">
-			<a class="nav-link" href="#">KULTÜR</a>
-		    </li>
-		    <li class="nav-item">
-			<a class="nav-link" href="#">Abmelden</a>
-		    </li>
-		</ul>
+		    <?php wp_nav_menu(array(
+			'menu' => 'primary',
+			'theme_location' => 'primary',
+			'container' => false,
+			'menu_class' => 'nav nav-pills float-sm-right',
+			'walker' => new BootstrapNavWalker()
+		    )) ?>
 		<a href="<?php bloginfo('url') ?>"><h1>Potsdam Tandems</h1></a>
 	    </div>
 	    <hr class="my-2">

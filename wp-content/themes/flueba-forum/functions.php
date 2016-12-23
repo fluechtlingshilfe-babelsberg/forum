@@ -5,6 +5,33 @@ add_action('wp_enqueue_scripts', function() {
     wp_enqueue_style('fontawesome', get_stylesheet_directory_uri() . '/css/font-awesome.min.css');
 });
 
+add_theme_support('post-thumbnails');
+
+register_nav_menus(array(
+    'primary' => 'Primary Menu'
+));
+
+require_once(dirname(__FILE__).'/kultuer.php');
+
+class BootstrapNavWalker extends Walker_Nav_Menu {
+    public function start_lvl(&$output, $depth = 0, $args = array()) {
+    }
+
+    public function end_lvl(&$output, $depth = 0, $args = array()) {
+    }
+
+    public function start_el(&$output, $item, $depth = 0, $args = array(), $current_object_id = 0) {
+	$classes = join(' ', $item->classes ? $item->classes : []);
+	$output .= '<li class="nav-item">';
+	$output .= '<a title="'.$item->attr_title.'" class="nav-link '.($item->current ? 'active' : '').'" href="'.$item->url.'">';
+	$output .= apply_filters('the_title', $item->title, $item->ID);
+    }
+
+    public function end_el(&$output, $object, $depth = 0, $args = array()) {
+	$output .= '</a></li>';
+    }
+}
+
 class BootstrapCommentsWalker extends Walker {
 
     function start_el(&$output, $comment, $depth = 0, $args = array(), $current_object_id = 0) {
