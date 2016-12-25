@@ -5,3 +5,29 @@ Author URI: http://fluechtlingshilfe-babelsberg.de
 Description: Theme for the Forum
 Version: 0.1
 */
+
+body {
+	font-family: Roboto;
+}
+
+.clear-color {
+	color: inherit;
+}
+
+.event-date {
+	font-weight: 800;
+	margin: 0;
+}
+.event-date span {
+	display: block;
+	text-align: center;
+	width: 100%;
+}
+.event-date-number {
+	font-size: 3em;
+}
+.event-date-word {
+	font-size: 1em;
+	margin-top: -15px;
+}
+
