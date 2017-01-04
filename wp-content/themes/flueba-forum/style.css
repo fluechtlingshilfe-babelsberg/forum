@@ -15,7 +15,6 @@ body {
 }
 
 .event-date {
-	font-weight: 800;
 	margin: 0;
 }
 .event-date span {
@@ -24,10 +23,12 @@ body {
 	width: 100%;
 }
 .event-date-number {
-	font-size: 3em;
+	font-size: 3.5em;
+	font-weight: 800;
 }
 .event-date-word {
-	font-size: 1em;
+	font-size: 1.5em;
+	font-weight: 100;
 	margin-top: -15px;
 }
 
