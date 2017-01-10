@@ -1,3 +1,5 @@
+<div class="sidebar">
+
 <h5>Unbeantwortete Fragen</h5>
 <?php
 $posts = get_posts(array(
@@ -50,3 +52,4 @@ wp_reset_postdata(); ?>
 <a href="#"><h6>Vollversammlung <small class="text-muted">Mon, 26. Feb</small></h6></a>
 <a href="#"><h6>Sommerfest <small class="text-muted">Fri, 4. Jul</small></h6></a>
 
+</div>

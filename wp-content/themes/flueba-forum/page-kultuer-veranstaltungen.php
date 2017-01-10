@@ -4,7 +4,7 @@
     'post_type' => 'kultuer_event'
 )); ?>
 
-<div class="col-md-8">
+<div class="col-md-8 kultuer">
 
 <?php
 while (have_posts()) {

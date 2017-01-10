@@ -10,6 +10,24 @@ body {
 	font-family: Roboto;
 }
 
+/*.nav-link.active {
+	background-color: #449d44;
+}
+body {
+	background-image: url(background.jpg);
+	background-position: bottom;
+	background-size: cover;
+	background-attachment: fixed;
+}
+h1, h3 { color: #fff; }
+.card, .btn.btn-outline-primary { background: #fff; }
+.sidebar, .kultuer {
+	background-color: #fff;
+	padding: 12px;
+	border-radius: 5px;
+	border: 1px solid #0275d8;
+}*/
+
 .clear-color {
 	color: inherit;
 }
