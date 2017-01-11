@@ -14,6 +14,30 @@ register_nav_menus(array(
     'primary' => 'Primary Menu'
 ));
 
+add_action("admin_post_create_post", "flueba_create_post");
+add_action("admin_post_nopriv_create_post", "flueba_create_post");
+
+function flueba_create_post() {
+    if (!isset($_POST["create_post_nonce_field"]) ||
+	!wp_verify_nonce($_POST['create_post_nonce_field'], 'create_post_nonce'))
+	wp_die("Unauthorized post creation attempt");
+
+    $id = wp_insert_post(array(
+	'post_title' => wp_strip_all_tags($_POST['title']),
+	'post_content' => wp_strip_all_tags($_POST['content']),
+	'post_type' => 'post',
+	'post_status' => 'publish',
+	'post_category' => array($_POST['category'])
+    ), true);
+
+    if (is_wp_error($id))
+	wp_die($id->get_error_message());
+    else {
+	wp_redirect(get_permalink($id));
+	exit;
+    }
+}
+
 require_once(dirname(__FILE__).'/kultuer.php');
 
 class BootstrapNavWalker extends Walker_Nav_Menu {
