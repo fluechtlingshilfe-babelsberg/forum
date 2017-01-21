@@ -14,6 +14,8 @@ register_nav_menus(array(
     'primary' => 'Primary Menu'
 ));
 
+add_filter('excerpt_length', function($length) { return 12; }, 999);
+
 add_action("admin_post_create_post", "flueba_create_post");
 add_action("admin_post_nopriv_create_post", "flueba_create_post");
 
@@ -91,7 +93,8 @@ function the_author_box() {
     echo '</small>';
 }
 
-function the_card() { ?>
+function the_card($classes) { ?>
+<div class="<?= $classes ?>">
     <a href="<?php the_permalink() ?>" class="card card-outline-primary">
 	<div class="card-block">
 	    <div class="tag tag-default float-xs-right"><?php comments_number('Keine Antworten', 'Eine Antwort', '% Antworten') ?></div>
@@ -100,4 +103,5 @@ function the_card() { ?>
 	    <?php the_author_box() ?>
 	</div>
     </a>
+</div>
 <?php }

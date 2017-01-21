@@ -1,10 +1,12 @@
 <?php get_header() ?>
 
 <?php
-$categories = get_terms(array(
+$categories = array_filter(get_terms(array(
     'taxonomy' => 'category',
-    'hide_empty' => true
-));
+    'hide_empty' => false
+)), function($e) {
+    return $e->slug != 'uncategorized';
+});
 ?>
 
 <div class="row">
@@ -18,29 +20,29 @@ $categories = get_terms(array(
 		<a class="btn btn-secondary <?= !isset($_GET["category"]) ? 'active' : '' ?>" href="?">Alle</a>
 		<?php foreach ($categories as $category) {
 		$active = isset($_GET["category"]) && $_GET["category"] == $category->slug?>
-		<a class="btn btn-secondary <?= $active ? 'active' : '' ?>" href="?category=<?= $category->slug ?>">
+		<a class="btn btn-secondary <?= $active ? 'active' : '' ?>" href="<?= site_url("?category=$category->slug") ?>">
 		    <?= $category->name ?>
 		</a>
 		<?php } ?>
 	    </div>
 	</div>
 
-	<div class="row">
+	<div>
 	<?php foreach ($categories as $category) {
 	    if (isset($_GET["category"]) && $_GET["category"] != $category->slug) continue; ?>
-	    <div class="col-sm-4 mb-3">
 		<?php if (!isset($_GET["category"])) { ?>
 		<h3 style="font-weight: 300"><?= $category->name ?></h3>
 		<?php } ?>
 
+		<div class="row">
 		<?php
 		    $posts = query_posts(array('cat' => $category->term_id));
 		    while (have_posts()) {
 			the_post();
-			the_card();
+			the_card("col-lg-4 col-md-6 col-sm-12");
 		    } ?>
-		    <a href="<?= get_category_link($category) ?>" class="btn btn-sm btn-outline-primary">Mehr Einträge ...</a>
-	    </div>
+		</div>
+		<a href="<?= get_category_link($category) ?>" class="mb-2 btn btn-sm btn-outline-primary">Mehr Einträge ...</a>
 	<?php } ?>
 	</div>
     </div>
@@ -66,7 +68,7 @@ $categories = get_terms(array(
 			<div>
 			    <select name="category" class="custom-select">
 				<?php foreach ($categories as $category) { ?>
-				<option value="<?= $category->slug ?>"><?= $category->name ?></option>
+				<option value="<?= $category->term_id ?>"><?= $category->name ?></option>
 				<?php } ?>
 			    </select>
 			</div>
