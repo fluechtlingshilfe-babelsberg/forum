@@ -10,5 +10,6 @@
 7. Create the database by running `mysql -u root -e "CREATE DATABASE forum;"`
 8. Make sure Apache is configured to serve your wordpress folder (e.g. make sure your `/opt/lampp/etc/httpd.conf`'s `DocumentRoot` and the `Directory` right below it point to the directory).
 9. Visit localhost and follow the wizard.
+10. Install and activate the "Advanced Custom Fields" plugin.
 10. Select flueba-forum Theme in the admin interface.
 
