@@ -31,6 +31,8 @@ wp_list_comments(array(
 	    'title_reply' => null,
 	    'title_reply_before' => null,
 	    'title_reply_after' => null,
+	    'comment_notes_before' => null,
+	    'comment_notes_after' => null,
 	    'comment_field' => '<div class="form-group"><textarea placeholder="Antwort ..." id="comment" name="comment" rows="3" class="form-control" aria-required="true"></textarea></div>'
 	)); ?>
     </div>
