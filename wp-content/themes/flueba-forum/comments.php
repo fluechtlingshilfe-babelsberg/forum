@@ -1,6 +1,4 @@
-<?php define('AVATAR_SIZE', 64); ?>
-
-<ul class="media-list">
+<ul class="media-list comments">
 <?php
 wp_list_comments(array(
     'avatar_size' => AVATAR_SIZE,
@@ -17,6 +15,8 @@ wp_list_comments(array(
     'prev_text' => '<span>' . 'Previous' . '</span>',
     'next_text' => '<span>' . 'Next' . '</span>'
 )); ?>
+
+<hr>
 
 <div class="media">
     <div class="media-left">
