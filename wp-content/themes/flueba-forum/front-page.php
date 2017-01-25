@@ -31,12 +31,15 @@ $categories = array_filter(get_terms(array(
 	<?php foreach ($categories as $category) {
 	    if (isset($_GET["category"]) && $_GET["category"] != $category->slug) continue; ?>
 		<?php if (!isset($_GET["category"])) { ?>
-		<h3 style="font-weight: 300"><?= $category->name ?></h3>
+		<h3 style="font-weight: 300">
+		    <?= $category->name ?>
+		    <small style="font-weight: 300; font-size: 0.6em"><?= sprintf(_n('1 Eintrag', '%s Einträge', $category->count), $category->count) ?></small>
+		</h3>
 		<?php } ?>
 
 		<div class="row">
 		<?php
-		    $posts = query_posts(array('cat' => $category->term_id));
+		    $posts = query_posts(array('cat' => $category->term_id, 'posts_per_page' => 3));
 		    while (have_posts()) {
 			the_post();
 			the_card("col-lg-4 col-md-6 col-sm-12");
