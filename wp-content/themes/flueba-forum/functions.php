@@ -85,6 +85,7 @@ class BootstrapCommentsWalker extends Walker {
 		    <span class="fa fa-pencil"></span> Bearbeiten
 		</a>
 		<?php comment_text($comment) ?>
+		<small class="text-muted"><?php comment_author($comment) ?> - <?php comment_date('j.n.Y H:i') ?></small>
     <?php }
     function end_el(&$output, $object, $depth = 0, $args = array()) { ?>
 	    </div>
