@@ -1,5 +1,9 @@
 <?php
 
+
+require_once('lib/roles.php');
+require_once('lib/kultuer.php');
+
 define('AVATAR_SIZE', 64);
 
 add_action('wp_enqueue_scripts', function() {
@@ -25,17 +29,38 @@ add_filter('excerpt_length', function($length) { return 12; }, 999);
 
 add_action("admin_post_create_post", "flueba_create_post");
 add_action("admin_post_nopriv_create_post", "flueba_create_post");
+add_action('template_redirect','flueba_visitor_redirect');
+
+function flueba_visitor_redirect()
+{
+    if (!flueba_on_public_page()){
+        if(!is_user_logged_in()){
+            auth_redirect();
+            die();
+        }
+        else if(wp_get_current_user()->has_cap('kultuer')){
+            wp_redirect(admin_url());
+            die();
+        }
+    }
+
+}
+
+function flueba_on_public_page(){
+    return is_singular('kultuer_event') || is_page('kultuer-veranstaltungen');
+}
 
 function flueba_create_post() {
     if (!isset($_POST["create_post_nonce_field"]) ||
-	!wp_verify_nonce($_POST['create_post_nonce_field'], 'create_post_nonce'))
-	wp_die("Unauthorized post creation attempt");
+	    !wp_verify_nonce($_POST['create_post_nonce_field'], 'create_post_nonce') ||
+        !wp_get_current_user()->has_cap('edit_post'))
+	    wp_die("Unauthorized post creation attempt");
 
     $id = wp_insert_post(array(
 	'post_title' => wp_strip_all_tags($_POST['title']),
 	'post_content' => wp_strip_all_tags($_POST['content']),
 	'post_type' => 'post',
-	'post_status' => 'publish',
+	'post_status' => 'private',
 	'post_category' => array($_POST['category'])
     ), true);
 
@@ -47,7 +72,7 @@ function flueba_create_post() {
     }
 }
 
-require_once(dirname(__FILE__).'/kultuer.php');
+
 
 class BootstrapNavWalker extends Walker_Nav_Menu {
     public function start_lvl(&$output, $depth = 0, $args = array()) {
