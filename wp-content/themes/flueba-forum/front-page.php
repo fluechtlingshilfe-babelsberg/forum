@@ -35,17 +35,20 @@ $categories = array_filter(get_terms(array(
 		    <small style="font-weight: 300; font-size: 0.6em"><?= sprintf(_n('1 Eintrag', '%s Einträge', $category->count), $category->count) ?></small>
 		</h3>
 
-		<div class="row">
+		<div class="row mb-2">
+		    <div class="col-md-10 offset-md-1">
+			<hr>
 		<?php
 		    $posts = query_posts(array('cat' => $category->term_id, 'posts_per_page' => isset($_GET["category"]) ? -1 : 3));
 		    while (have_posts()) {
 			the_post();
-			the_card("col-lg-4 col-md-6 col-sm-12");
+			the_post_preview();
 		    } ?>
+		    <?php if (!isset($_GET["category"])) { ?>
+		    <a href="<?= site_url("?category=$category->slug") ?>" class="mb-2 btn btn-sm btn-outline-primary">Mehr Einträge ...</a>
+		    <?php } ?>
 		</div>
-		<?php if (!isset($_GET["category"])) { ?>
-		<a href="<?= site_url("?category=$category->slug") ?>" class="mb-2 btn btn-sm btn-outline-primary">Mehr Einträge ...</a>
-		<?php } ?>
+	    </div>
 	<?php } ?>
 	</div>
     </div>
