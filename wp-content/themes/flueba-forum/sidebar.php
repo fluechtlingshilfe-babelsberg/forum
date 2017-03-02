@@ -27,9 +27,7 @@ wp_reset_postdata(); ?>
 	'posts_per_page' => 3
     ));
     foreach ($events as $post) {
-	setup_postdata($post);
-	if (get_comments_number() > 0)
-	    break; ?>
+	setup_postdata($post); ?>
 	<a href="<?php the_permalink() ?>">
 	    <h6>
 		<?php the_title() ?>
