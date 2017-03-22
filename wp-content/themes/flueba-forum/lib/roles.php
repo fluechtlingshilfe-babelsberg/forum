@@ -1,30 +1,60 @@
 <?php
-//FIXME: Make sure this is only called once per install
-$editor = get_role('editor');
-$author = get_role('author');
+// FIXME: Make sure all of this is only called once per install
 
 remove_role('member');
 remove_role('kultuer');
 remove_role('moderator');
 
-$member = add_role('member', 'Mitglied', $author->capabilities);
+$member = add_role('member', 'Mitglied', array(
+    'delete_private_posts' => true,
+    'edit_private_posts' => true,
+    'read_private_posts' => true,
+    'unfiltered_html' => false,
+    'edit_published_posts' => true,
 
-if($member != null) {
-    foreach (array('read_private_posts', 'edit_comment') as $cap)
-        $member->add_cap($cap);
-}
+    'edit_published_posts' => true,
+    'upload_files' => false,
+    'publish_posts' => true,
+    'delete_published_posts' => true,
+    'edit_posts' => true,
+    'delete_posts' => true,
+    'read' => true
+));
 
-$moderator = add_role('moderator', 'Moderator', $editor->capabilities);
+$moderator = add_role('moderator', 'Moderator', array(
+    'create_users' => false,
+    'delete_users' => false,
 
-if($moderator != null) {
-    foreach (array('create_users', 'delete_users') as $cap)
-        $moderator->add_cap($cap);
+    'moderate_comments' => true,
+    'manage_categories' => true,
+    'manage_links' => false,
+    'edit_others_posts' => true,
+    'edit_pages' => false,
+    'edit_others_pages' => false,
+    'edit_published_pages' => false,
+    'publish_pages' => false,
+    'delete_pages' => false,
+    'delete_others_pages' => false,
+    'delete_published_pages' => false,
+    'delete_others_posts' => true,
+    'delete_private_posts' => true,
+    'edit_private_posts' => true,
+    'read_private_posts' => true,
+    'delete_private_pages' => false,
+    'edit_private_pages' => false,
+    'read_private_pages' => false,
+    'unfiltered_html' => false,
 
-    foreach (array('upload_files') as $cap)
-        $moderator->remove_cap($cap);
-}
+    'edit_published_posts' => true,
+    'upload_files' => false,
+    'publish_posts' => true,
+    'delete_published_posts' => true,
+    'edit_posts' => true,
+    'delete_posts' => true,
+    'read' => true
+));
 
-$kultuer = add_role('kultuer', 'Kultür',array(
+$kultuer = add_role('kultuer', 'Kultür', array(
     'read' => true,
     'remove_post' => false,
     'edit_post' => false,
@@ -37,4 +67,10 @@ $kultuer = add_role('kultuer', 'Kultür',array(
     'read_private_kultuer_events' => true,
     'delete_kultuer_events' => true
 ));
+
+// obsolete default roles
+remove_role('subscriber');
+remove_role('author');
+remove_role('editor');
+remove_role('contributor');
 

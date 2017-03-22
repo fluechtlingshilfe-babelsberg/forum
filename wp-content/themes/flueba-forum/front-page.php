@@ -17,10 +17,10 @@ $categories = array_filter(get_terms(array(
 	    </button>
 
 	    <div class="btn-group">
-		<a class="btn btn-secondary <?= !isset($_GET["category"]) ? 'active' : '' ?>" href="?">Alle</a>
+		<a class="btn btn-sm btn-secondary <?= !isset($_GET["category"]) ? 'active' : '' ?>" href="?">Alle</a>
 		<?php foreach ($categories as $category) {
 		$active = isset($_GET["category"]) && $_GET["category"] == $category->slug?>
-		<a class="btn btn-secondary <?= $active ? 'active' : '' ?>" href="<?= site_url("?category=$category->slug") ?>">
+		<a class="btn btn-sm btn-secondary <?= $active ? 'active' : '' ?>" href="<?= site_url("?category=$category->slug") ?>">
 		    <?= $category->name ?>
 		</a>
 		<?php } ?>
