@@ -11,27 +11,10 @@ remove_role('moderator');
 $admin = get_role('administrator');
 foreach (array(
     'edit_own_comment',
-    'edit_others_comments'
+    'edit_others_comments',
+    'see_admin_bar'
 ) as $cap)
     $admin->add_cap($cap);
-
-$member = add_role('member', 'Mitglied', array(
-    'delete_private_posts' => true,
-    'edit_private_posts' => true,
-    'read_private_posts' => true,
-    'unfiltered_html' => false,
-    'edit_published_posts' => true,
-
-    'edit_published_posts' => true,
-    'upload_files' => false,
-    'publish_posts' => true,
-    'delete_published_posts' => true,
-    'edit_posts' => true,
-    'delete_posts' => true,
-    'read' => true,
-
-    'edit_own_comment' => true
-));
 
 $moderator = add_role('moderator', 'Moderator', array(
     'create_users' => false,
@@ -59,14 +42,33 @@ $moderator = add_role('moderator', 'Moderator', array(
 
     'edit_published_posts' => true,
     'upload_files' => false,
-    'publish_posts' => true,
+    'publish_posts' => false,
     'delete_published_posts' => true,
     'edit_posts' => true,
     'delete_posts' => true,
     'read' => true,
 
     'edit_own_comment' => true,
-    'edit_others_comment' => true
+    'edit_others_comment' => true,
+    'see_admin_bar' => true
+));
+
+$member = add_role('member', 'Mitglied', array(
+    'delete_private_posts' => true,
+    'edit_private_posts' => true,
+    'read_private_posts' => true,
+    'unfiltered_html' => false,
+    'edit_published_posts' => true,
+
+    'edit_published_posts' => true,
+    'upload_files' => false,
+    'publish_posts' => false,
+    'delete_published_posts' => true,
+    'edit_posts' => true,
+    'delete_posts' => true,
+    'read' => true,
+
+    'edit_own_comment' => true
 ));
 
 $kultuer = add_role('kultuer', 'Kultür', array(

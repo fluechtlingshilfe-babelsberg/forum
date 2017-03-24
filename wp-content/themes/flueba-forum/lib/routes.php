@@ -3,7 +3,7 @@
 add_action("admin_post_create_post", function() {
     if (!isset($_POST["create_post_nonce_field"]) ||
         !wp_verify_nonce($_POST['create_post_nonce_field'], 'create_post_nonce') ||
-        !wp_get_current_user()->has_cap('edit_post')) {
+        !wp_get_current_user()->has_cap('edit_posts')) {
         wp_die("Unauthorized post creation attempt");
     }
 
@@ -12,6 +12,7 @@ add_action("admin_post_create_post", function() {
         'post_content' => wp_strip_all_tags($_POST['content']),
         'post_type' => 'post',
         'post_status' => 'private',
+        'comment_status' => 'open',
         'post_category' => array($_POST['category'])
     ), true);
 
