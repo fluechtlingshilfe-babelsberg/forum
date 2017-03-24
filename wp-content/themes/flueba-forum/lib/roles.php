@@ -1,9 +1,19 @@
 <?php
 // FIXME: Make sure all of this is only called once per install
+//
+// NOTE:
+// - don't use edit_comment anywhere. we redefine comment capabilities (edit_comment gave the OP the option to edit everyone's comments)
 
 remove_role('member');
 remove_role('kultuer');
 remove_role('moderator');
+
+$admin = get_role('administrator');
+foreach (array(
+    'edit_own_comment',
+    'edit_others_comments'
+) as $cap)
+    $admin->add_cap($cap);
 
 $member = add_role('member', 'Mitglied', array(
     'delete_private_posts' => true,
@@ -18,7 +28,9 @@ $member = add_role('member', 'Mitglied', array(
     'delete_published_posts' => true,
     'edit_posts' => true,
     'delete_posts' => true,
-    'read' => true
+    'read' => true,
+
+    'edit_own_comment' => true
 ));
 
 $moderator = add_role('moderator', 'Moderator', array(
@@ -51,7 +63,10 @@ $moderator = add_role('moderator', 'Moderator', array(
     'delete_published_posts' => true,
     'edit_posts' => true,
     'delete_posts' => true,
-    'read' => true
+    'read' => true,
+
+    'edit_own_comment' => true,
+    'edit_others_comment' => true
 ));
 
 $kultuer = add_role('kultuer', 'Kultür', array(
@@ -67,6 +82,16 @@ $kultuer = add_role('kultuer', 'Kultür', array(
     'read_private_kultuer_events' => true,
     'delete_kultuer_events' => true
 ));
+
+function can_edit_comment($user, $comment_ID) {
+    if ($user->has_cap('edit_others_comments'))
+        return true;
+
+    if (!$user->has_cap('edit_own_comment'))
+        return false;
+
+    return $user->ID == get_comment($comment_ID)->user_id;
+}
 
 // obsolete default roles
 remove_role('subscriber');

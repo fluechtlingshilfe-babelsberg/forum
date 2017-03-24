@@ -1,58 +1,50 @@
 <ul class="media-list comments">
 <?php
 
-function is_my_comment($comment) {
-    return get_current_user_id() == $comment->user_id;
-}
-
 class BootstrapCommentsWalker extends Walker {
 
     function start_el(&$output, $comment, $depth = 0, $args = array(), $current_object_id = 0) {
 	$GLOBALS["comment"] = $comment;
-	// var_dump($comment);
+	$user = wp_get_current_user();
 	$avatar = $args['avatar_size'] != 0 ?
 	    get_avatar($comment, $args['avatar_size'], null, false, array('class' => 'media-object')) :
 	    ''; ?>
 
-	<li class="media mb-1" id="comment-<? $comment->comment_ID ?>">
+	<li class="media mb-1" id="comment-<?= $comment->comment_ID ?>">
 	    <div class="media-left">
 		<?= $avatar ?>
 	    </div>
 	    <div class="media-body">
-		<?php if (is_my_comment($comment)) { ?>
-		<a class="btn btn-sm btn-secondary float-xs-right" href="<?= get_edit_comment_link() ?>">
+		<?php if (can_edit_comment($user, $comment->comment_ID)) { ?>
+		<a class="btn btn-sm btn-secondary float-xs-right comment-edit" href="javascript:commentEdit('<?= $comment->comment_ID ?>')">
 		    <span class="fa fa-pencil"></span> Bearbeiten
 		</a>
 		<?php } ?>
-		<?php comment_text($comment) ?>
+		<p class="comment-text"><?= get_comment_text($comment) ?></p>
 		<small class="text-muted"><?php comment_author($comment) ?> - <?php comment_date('j.n.Y H:i') ?></small>
     <?php }
     function end_el(&$output, $object, $depth = 0, $args = array()) { ?>
 	    </div>
 	</li>
     <?php }
-}
+} ?>
 
-function the_author_box() {
-    echo '<small class="text-muted">';
-    echo get_avatar(get_the_author_meta('ID'), 22);
-    echo ' ';
-    the_author();
-    echo '</small>';
-}
-
-function the_card($classes = 'col-sm-6 col-md-4') { ?>
-<div class="<?= $classes ?>">
-    <a href="<?php the_permalink() ?>" class="card card-outline-primary">
-	<div class="card-block">
-	    <div class="tag tag-default float-xs-right"><?php comments_number('Keine Antworten', 'Eine Antwort', '% Antworten') ?></div>
-	    <h6 class="card-title"><?php the_title() ?></h6>
-	    <p class="card-text"><?php the_excerpt() ?></p>
-	    <?php the_author_box() ?>
+<script type="text/html" id="template-comment-edit">
+    <form action="<?= admin_url('admin-post.php') ?>" method="POST">
+	<input type="hidden" name="action" value="edit_comment">
+	<input type="hidden" name="comment_ID" value="{id}">
+	<?php wp_nonce_field('edit_comment_nonce', 'edit_comment_nonce_field'); ?>
+	<div class="form-group">
+	    <textarea rows="4" class="form-control" name="comment_content">{content}</textarea>
 	</div>
-    </a>
-</div>
-<?php }
+	<div class="float-xs-right">
+	    <button class="btn btn-secondary comment-edit-abort">Abbrechen</button>
+	    <input class="btn btn-primary" type="submit" value="Ändern">
+	</div>
+    </form>
+</script>
+
+<?php
 
 wp_list_comments(array(
     'avatar_size' => AVATAR_SIZE,
@@ -66,8 +58,8 @@ wp_list_comments(array(
 </ul>
 
 <?php the_comments_pagination(array(
-    'prev_text' => '<span>' . 'Previous' . '</span>',
-    'next_text' => '<span>' . 'Next' . '</span>'
+    'prev_text' => '<span>' . 'Vorherige' . '</span>',
+    'next_text' => '<span>' . 'Nächste' . '</span>'
 )); ?>
 
 <hr>
