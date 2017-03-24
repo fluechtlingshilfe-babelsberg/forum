@@ -1,4 +1,4 @@
-<ul class="media-list comments">
+<ul class="media-list comments mb-0">
 <?php
 
 /**
@@ -73,11 +73,11 @@ wp_list_comments(array(
     'next_text' => '<span>' . 'Nächste' . '</span>'
 )); ?>
 
-<hr>
+<hr class="my-0">
 
-<div class="media">
+<div class="media mt-3">
     <div class="media-left">
-	<?= get_avatar(wp_get_current_user()->user_email, AVATAR_SIZE, null, false, array('class' => 'media-object')) ?>
+	<?= get_avatar(wp_get_current_user()->user_email, AVATAR_SIZE, null, false, array('class' => 'media-object mr-1')) ?>
     </div>
     <div class="media-body">
 	<?php comment_form(array(

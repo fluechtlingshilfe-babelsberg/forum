@@ -18,4 +18,4 @@
 		    )) ?>
 		<a style="color: inherit" href="<?php bloginfo('url') ?>"><h1>Potsdam Tandems</h1></a>
 	    </div>
-	    <hr class="my-2">
+	</div>

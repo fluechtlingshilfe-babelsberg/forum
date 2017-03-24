@@ -6,23 +6,17 @@ $show_all_categories = !isset($_GET["category"]);
 $active_category = $show_all_categories ? 'all' : $_GET["category"];
 ?>
 
+<?php the_colored_categories() ?>
+
+<div class="container">
 <div class="row">
     <div class="col-md-9">
-	<!-- category chooser and create post button -->
+
+	<!-- create post button -->
 	<div class="clearfix mb-2">
 	    <button class="btn btn-success float-sm-right" data-toggle="modal" data-target="#newPostModal">
 		<span class="fa fa-pencil"></span> Eintrag erstellen
 	    </button>
-
-	    <div class="btn-group">
-		<a class="btn btn-sm btn-secondary <?= $show_all_categories ? 'active' : '' ?>" href="?">Alle</a>
-		<?php foreach ($categories as $category) { ?>
-		    <a class="btn btn-sm btn-secondary <?= $active_category == $category->slug ? 'active' : '' ?>"
-			href="<?= site_url("?category=$category->slug") ?>">
-			<?= $category->name ?>
-		    </a>
-		<?php } ?>
-	    </div>
 	</div>
 
 	<!-- list of posts per category -->
@@ -33,7 +27,7 @@ $active_category = $show_all_categories ? 'all' : $_GET["category"];
 	    <h3 style="font-weight: 300">
 		<?= $category->name ?>
 		<small style="font-weight: 300; font-size: 0.6em">
-		    <?= sprintf(_n('1 Eintrag', '%s Einträge', $category->count), $category->count) ?>
+		    <?php the_category_count($category) ?>
 		</small>
 	    </h3>
 
@@ -63,6 +57,7 @@ $active_category = $show_all_categories ? 'all' : $_GET["category"];
     <div class="col-md-3">
 	<?php get_sidebar() ?>
     </div>
+</div>
 </div>
 
 <?= get_template_part('partials/modal', 'create-post') ?>

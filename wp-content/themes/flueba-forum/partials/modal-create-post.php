@@ -15,8 +15,14 @@
 			<label for="category">Kategorie</label>
 			<div>
 			    <select name="category" class="custom-select">
-				<?php foreach (get_the_categories() as $category) { ?>
-				<option value="<?= $category->term_id ?>"><?= $category->name ?></option>
+				<?php
+				$active = active_category_slug();
+				foreach (get_the_categories() as $category) { ?>
+				    <option
+					<?= $category->slug == $active ? 'selected' : '' ?>
+					value="<?= $category->term_id ?>">
+					<?= $category->name ?>
+				    </option>
 				<?php } ?>
 			    </select>
 			</div>
