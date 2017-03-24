@@ -1,32 +1,43 @@
 <ul class="media-list comments">
 <?php
 
+/**
+ * The walker is responsible for the actual output of each comment entry
+ */
 class BootstrapCommentsWalker extends Walker {
 
+    /**
+     * Output a single comment.
+     *
+     * Since we don't have any more sophisticated nesting logic, start_el outputs the whole element
+     */
     function start_el(&$output, $comment, $depth = 0, $args = array(), $current_object_id = 0) {
 	$GLOBALS["comment"] = $comment;
 	$user = wp_get_current_user();
-	$avatar = $args['avatar_size'] != 0 ?
-	    get_avatar($comment, $args['avatar_size'], null, false, array('class' => 'media-object')) :
-	    ''; ?>
+	$avatar = $args['avatar_size'] == 0 ? '' :
+	    get_avatar($comment, $args['avatar_size'], null, false, array('class' => 'media-object rounded mr-1')); ?>
 
-	<li class="media mb-1" id="comment-<?= $comment->comment_ID ?>">
-	    <div class="media-left">
-		<?= $avatar ?>
-	    </div>
+	<li class="media py-3" id="comment-<?= $comment->comment_ID ?>">
+	    <div class="media-left"><?= $avatar ?></div>
+
 	    <div class="media-body">
 		<?php if (can_edit_comment($user, $comment->comment_ID)) { ?>
 		<a class="btn btn-sm btn-secondary float-xs-right comment-edit" href="javascript:commentEdit('<?= $comment->comment_ID ?>')">
 		    <span class="fa fa-pencil"></span> Bearbeiten
 		</a>
 		<?php } ?>
-		<p class="comment-text"><?= get_comment_text($comment) ?></p>
-		<small class="text-muted"><?php comment_author($comment) ?> - <?php comment_date('j.n.Y H:i') ?></small>
-    <?php }
-    function end_el(&$output, $object, $depth = 0, $args = array()) { ?>
+
+		<p>
+		    <strong class="mr-1"><?php comment_author($comment) ?></strong>
+		    <small class="text-muted">vor <?= human_time_diff(get_comment_time('U'), current_time('timestamp')) ?></small>
+		</p>
+
+		<p class="comment-text mb-0"><?= get_comment_text($comment) ?></p>
 	    </div>
 	</li>
     <?php }
+
+    function end_el(&$output, $object, $depth = 0, $args = array()) {}
 } ?>
 
 <script type="text/html" id="template-comment-edit">
