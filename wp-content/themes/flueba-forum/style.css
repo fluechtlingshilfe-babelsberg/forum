@@ -28,6 +28,13 @@ h1, h3 { color: #fff; }
 	border: 1px solid #0275d8;
 }*/
 
+h1.title {
+	font-family: 'Patua One';
+	font-size: 2em;
+	margin: 0;
+	display: inline;
+}
+
 .clear-color {
 	color: inherit;
 }
@@ -55,10 +62,13 @@ h1, h3 { color: #fff; }
 	padding-top: 15px;
 }
 
+/* put this around content that is less important than the main text
+ * display and should thus get smaller text */
 .secondary-content {
 	font-size: 0.9em;
 }
 
+/* sidebar items */
 .category-list-item {
 	margin-bottom: 1.6rem;
 	font-weight: bold;
@@ -87,4 +97,18 @@ h1, h3 { color: #fff; }
 	height: 1rem;
 	border-radius: 0.25rem;
 	display: inline-block;
+}
+
+
+/* toplevel navigation menu */
+a.nav-link, .nav-pills a.nav-link.active,
+.nav-pills a.nav-link.active:hover, .nav-pills a.nav-link.active:focus {
+	color: #779;
+	background: transparent;
+	font-size: 0.9em;
+	font-weight: bold;
+}
+a.nav-link:hover, a.nav-link:focus,
+{
+	color: #446;
 }

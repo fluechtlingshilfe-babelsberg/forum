@@ -143,11 +143,11 @@ function the_colored_categories() {
     <div class="mt-1 container clearfix" style="box-shadow: 0 0 8px rgba(0, 0, 0, 0.3)">
     <div class="row">
     <?php foreach ($categories as $category) { ?>
-	<a style="width: <?= $width ?>; float: left; color: #fff; display: block;" href="<?= site_url("?category=$category->slug") ?>">
+	<a style="width: <?= $width ?>; float: left; color: #fff; display: block; overflow: hidden" href="<?= site_url("?category=$category->slug") ?>">
 	    <h4 style="background-color: <?= $colors[$i] ?>; font-weight: 200; padding: 32px 24px 40px 24px" class="mb-0">
 		<?= $category->name ?>
 	    </h4>
-	    <div style="background-color: <?= $lighter_colors[$i] ?>; padding: 8px 24px">
+	    <div style="background-color: <?= $lighter_colors[$i] ?>; padding: 8px 24px; box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.2)">
 		<small><?php the_category_count($category) ?></small>
 	    </div>
 	</a>
