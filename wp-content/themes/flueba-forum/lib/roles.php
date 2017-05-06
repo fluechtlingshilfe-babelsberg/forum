@@ -4,6 +4,13 @@
 // NOTE:
 // - don't use edit_comment anywhere. we redefine comment capabilities (edit_comment gave the OP the option to edit everyone's comments)
 
+add_action('admin_menu', function() {
+    global $menu;
+    if (!current_user_can('see_admin_bar'))
+        $menu = array();
+});
+remove_action('admin_color_scheme_picker', 'admin_color_scheme_picker');
+
 remove_role('member');
 remove_role('kultuer');
 remove_role('moderator');

@@ -19,3 +19,14 @@ class BootstrapNavWalker extends Walker_Nav_Menu {
     }
 }
 
+// add settings item
+add_filter('wp_nav_menu_items', function($items, $menu) {
+    if ($menu->theme_location != 'primary')
+	return $items;
+
+    $items .= '<li class="nav-item">
+	<a class="nav-link" href="'.admin_url('profile.php').'"><span class="fa fa-cog"></span></a>
+	</li>';
+
+    return $items;
+}, 10, 2);

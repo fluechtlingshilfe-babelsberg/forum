@@ -34,6 +34,18 @@ add_filter('private_title_format', function($content) {
     return '%s';
 });
 
+
+// make sure all users get sent to the homepage instead of the admin interface
+add_action('login_form', function() {
+    global $redirect_to;
+    if (!isset($_GET['redirect_to'])) {
+	$redirect_to = get_option('siteurl');
+    }
+});
+add_filter('login_headerurl', function() {
+    return get_option('siteurl');
+});
+
 add_action('template_redirect', function() {
     if (flueba_on_public_page())
 	return;
