@@ -71,7 +71,7 @@ function kultuer_request_tickets() {
   $headers = 'From: webmaster@example.com' . "\r\n" .
     'Reply-To: ' . $current_user->user_email . "\r\n" .
     'MIME-Version: 1.0' . "\r\n" .
-    'Content-type: text/html; charset=iso-8859-1' . "\r\n" .
+    'Content-type: text/html; charset=UTF-8' . "\r\n" .
     'X-Mailer: PHP/' . phpversion();
   // echo $message;
   mail($to, $subject, $message, $headers);
