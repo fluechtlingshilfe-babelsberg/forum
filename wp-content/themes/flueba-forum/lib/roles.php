@@ -19,7 +19,14 @@ $admin = get_role('administrator');
 foreach (array(
     'edit_own_comment',
     'edit_others_comments',
-    'see_admin_bar'
+    'see_admin_bar',
+    'edit_kultuer_event',
+    'edit_kultuer_events',
+    'edit_others_kultuer_events',
+    'publish_kultuer_events',
+    'read_kultuer_events',
+    'read_private_kultuer_events',
+    'delete_kultuer_events'
 ) as $cap)
     $admin->add_cap($cap);
 
