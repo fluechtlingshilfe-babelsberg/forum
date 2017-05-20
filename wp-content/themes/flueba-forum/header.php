@@ -10,13 +10,21 @@
 	<br>
 	<div class="container">
 	    <div class="cleafix">
-		<?php wp_nav_menu(array(
-		    'menu' => 'primary',
-		    'theme_location' => 'primary',
-		    'container' => false,
-		    'menu_class' => 'nav nav-pills float-sm-right',
-		    'walker' => new BootstrapNavWalker()
-		)) ?>
+		<ul class="nav nav-pills float-sm-right">
+		    <li class="nav-item">
+			<a class="nav-link" href="<?= site_url() ?>">Forum</a>
+		    </li>
+		    <li class="nav-item">
+			<a class="nav-link" href="<?= get_permalink(get_page_by_path('kultuer-veranstaltungen')) ?>">KULTÜR Veranstaltungen</a>
+		    </li>
+		    <li class="nav-item">
+			<a class="nav-link" href="<?= wp_logout_url() ?>">Logout</a>
+		    </li>
+		    <li class="nav-item">
+			<a class="nav-link" href="<?= admin_url('profile.php') ?>"><span class="fa fa-cog"></span></a>
+		    </li>
+		</ul>
+
 		<a href="http://fluechtlingshilfe-babelsberg.de" target="_blank" class="mr-3 float-xs-right">
 		    <img src="<?= get_stylesheet_directory_uri().'/images/fhb-logo.jpg' ?>" height="40">
 		</a>
