@@ -48,9 +48,12 @@ class BootstrapCommentsWalker extends Walker {
 	<div class="form-group">
 	    <textarea rows="4" class="form-control" name="comment_content">{content}</textarea>
 	</div>
-	<div class="float-xs-right">
-	    <button class="btn btn-secondary comment-edit-abort">Abbrechen</button>
-	    <input class="btn btn-primary" type="submit" value="Ändern">
+	<div>
+	    <button name="delete_comment" class="btn btn-danger">Kommentar löschen</button>
+	    <div class="float-xs-right">
+		<button class="btn btn-secondary comment-edit-abort">Abbrechen</button>
+		<input class="btn btn-primary" type="submit" value="Ändern">
+	    </div>
 	</div>
     </form>
 </script>

@@ -31,13 +31,16 @@ add_action("admin_post_edit_comment", function() {
         wp_die("Unauthorized comment edit attempt");
     }
 
-    $data = array(
-        'comment_ID' => $_POST['comment_ID'],
-        'comment_content' => $_POST['comment_content']
-    );
-
-    // takes care of escaping and filtering
-    wp_update_comment($data);
+    if (isset($_POST['delete_comment'])) {
+        wp_delete_comment($_POST['comment_ID'], false);
+    } else {
+        $data = array(
+            'comment_ID' => $_POST['comment_ID'],
+            'comment_content' => $_POST['comment_content']
+        );
+        // takes care of escaping and filtering
+        wp_update_comment($data);
+    }
 
     $post = get_comment($_POST['comment_ID'])->comment_post_ID;
     wp_redirect(get_permalink($post) . "#comment-{$_POST['comment_ID']}");
