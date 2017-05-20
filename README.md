@@ -13,3 +13,4 @@
 10. Install and activate the "Advanced Custom Fields" plugin.
 10. Select flueba-forum Theme in the admin interface.
 
+To make sure that the user that runs the server can write plugins, run `chown -R daemon:deamon .` **inside the repository folder**. To make sure that you can still put, also run `sudo usermod -a -G daemon $USER` to add your user to the `daemon` group.
