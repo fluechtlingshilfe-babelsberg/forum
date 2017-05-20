@@ -55,8 +55,8 @@ function flueba_request_tickets() {
 
   $to      = 'flueba@mailinator.com';
   $subject = 'Ticketanfrage';
-  $message = $current_user->display_name . ' hat ' .
-    $_REQUEST['number_of_tickets'] . ' Tickets für das Event ' . $event->post_title . " angefragt. " .
+  $message = 'Der Nutzer ' . $current_user->display_name . ' hat ' .
+    $_REQUEST['number_of_tickets'] . ' Tickets für das Event "' . $event->post_title . '" angefragt. ' .
     'Es sind noch ' . ($num_tickets - $num_tickets_assigned) . ' Tickets verfügbar.';
   $headers = 'From: webmaster@example.com' . "\r\n" .
   'Reply-To: ' . $current_user->user_email . "\r\n" .
