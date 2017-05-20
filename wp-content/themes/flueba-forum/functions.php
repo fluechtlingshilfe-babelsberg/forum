@@ -60,8 +60,9 @@ function flueba_request_tickets() {
     $_REQUEST['number_of_tickets'] . ' Tickets für das Event "' . $event->post_title . '" angefragt. ' .
     'Es sind noch ' . ($num_tickets - $num_tickets_assigned) . ' Tickets verfügbar.';
   $headers = 'From: webmaster@example.com' . "\r\n" .
-  'Reply-To: ' . $current_user->user_email . "\r\n" .
-  'X-Mailer: PHP/' . phpversion();
+    'Reply-To: ' . $current_user->user_email . "\r\n" .
+    'Content-Type: text/html; charset=UTF-8' . "\r\n" .
+    'X-Mailer: PHP/' . phpversion();
   // echo $message;
   mail($to, $subject, $message, $headers);
   wp_redirect(get_permalink(get_page_by_path('kultuer-veranstaltungen')->ID) . '?message=Die%20Ticketanfrage%20wurde%20erfolgreich%20versendet.');
