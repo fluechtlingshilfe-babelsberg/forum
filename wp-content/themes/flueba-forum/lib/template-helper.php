@@ -195,9 +195,9 @@ function the_card($classes = 'col-sm-6 col-md-4') { ?>
 function the_post_preview() { ?>
 <div class="">
     <a href="<?php the_permalink() ?>" class="d-block mb-1">
-	<!--<div class="ml-1 tag tag-default float-xs-right"><?php comments_number('Keine Antworten', 'Eine Antwort', '% Antworten') ?></div>-->
 	<div class="float-xs-right"><?php the_author_box() ?></div>
 	<strong><?php the_title() ?></strong>
+	<div class="ml-1 tag tag-default"><?php comments_number('Keine Antworten', 'Eine Antwort', '% Antworten') ?></div>
     </a>
     <hr>
 </div>
