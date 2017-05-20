@@ -7,7 +7,7 @@
 <div class="col-md-8 kultuer">
 
 <?php
-if($_GET['message']) {
+if(isset($_GET['message'])) {
   ?> <div class="alert alert-success" role="alert"><?=$_GET['message'] ?></div> <?php
 }
 while (have_posts()) {

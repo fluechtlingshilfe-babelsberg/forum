@@ -2,8 +2,8 @@
 if(function_exists("register_field_group"))
 {
 	register_field_group(array (
-		'id' => 'acf_kultuer-veranstaltung',
-		'title' => 'KULTÜR Veranstaltung',
+		'id' => 'acf_kultuer-veranstaltung_2',
+		'title' => 'KULTÜR Veranstaltung2',
 		'fields' => array (
 			array (
 				'key' => 'field_585d39d549ea8',

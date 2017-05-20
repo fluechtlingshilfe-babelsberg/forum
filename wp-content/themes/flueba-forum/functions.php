@@ -85,4 +85,3 @@ add_action('template_redirect', function() {
 function flueba_on_public_page(){
     return is_singular('kultuer_event') || is_page('kultuer-veranstaltungen');
 }
-
