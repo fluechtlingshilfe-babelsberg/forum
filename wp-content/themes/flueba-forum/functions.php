@@ -47,7 +47,7 @@ add_filter('login_headerurl', function() {
 });
 add_action( 'admin_post_request_tickets', 'flueba_request_tickets' );
 function flueba_request_tickets() {
-  status_header(200);
+  // status_header(200);
   $current_user = wp_get_current_user();
   $event = get_post($_REQUEST['event']);
   $num_tickets = get_field( "num_tickets", $_REQUEST['event'] );
@@ -61,10 +61,10 @@ function flueba_request_tickets() {
   $headers = 'From: webmaster@example.com' . "\r\n" .
   'Reply-To: ' . $current_user->user_email . "\r\n" .
   'X-Mailer: PHP/' . phpversion();
-  echo $message;
-  //mail($to, $subject, $message, $headers);
-  die();
-  //request handlers should die() when they complete their task
+  // echo $message;
+  mail($to, $subject, $message, $headers);
+  wp_redirect(get_permalink(get_page_by_path('kultuer-veranstaltungen')->ID) . '?message=Die%20Ticketanfrage%20wurde%20erfolgreich%20versendet.');
+  die();  //request handlers should die() when they complete their task
 }
 
 
