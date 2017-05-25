@@ -75,7 +75,7 @@ function kultuer_request_tickets() {
     'Content-type: text/html; charset=UTF-8' . "\r\n" .
     'X-Mailer: PHP/' . phpversion();
    //echo $message;
-  mail($to, $subject, $message, $headers);
+  mail($to, '=?utf-8?B?'.base64_encode($subject).'?=', $message, $headers);
   $success_message = 'Die%20Ticketanfrage%20wurde%20erfolgreich%20versendet.%20Wir%20werden%20Sie%20per%20E-Mail%20an%20' . $current_user->user_email . '%20benachrichtigen.';
   wp_redirect(get_permalink(get_page_by_path('kultuer-veranstaltungen')->ID) . '?message=' . $success_message);
   die();  //request handlers should die() when they complete their task
@@ -121,7 +121,7 @@ function kultuer_send_ticket_response_mail($_to, $subject, $message) {
     'Content-type: text/html; charset=UTF-8' . "\r\n" .
     'X-Mailer: PHP/' . phpversion();
    echo $message;
-  mail($to, $subject, $message, $headers);
+  mail($to, '=?utf-8?B?'.base64_encode($subject).'?=', $message, $headers);
 }
 
 add_action('template_redirect', function() {
