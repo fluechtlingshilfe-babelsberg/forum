@@ -74,9 +74,10 @@ function kultuer_request_tickets() {
     'MIME-Version: 1.0' . "\r\n" .
     'Content-type: text/html; charset=UTF-8' . "\r\n" .
     'X-Mailer: PHP/' . phpversion();
-   echo $message;
-  //mail($to, $subject, $message, $headers);
-  //wp_redirect(get_permalink(get_page_by_path('kultuer-veranstaltungen')->ID) . '?message=Die%20Ticketanfrage%20wurde%20erfolgreich%20versendet.');
+   //echo $message;
+  mail($to, $subject, $message, $headers);
+  $success_message = 'Die%20Ticketanfrage%20wurde%20erfolgreich%20versendet.%20Wir%20werden%20Sie%20per%20E-Mail%20an%20' . $current_user->user_email . '%20benachrichtigen.';
+  wp_redirect(get_permalink(get_page_by_path('kultuer-veranstaltungen')->ID) . '?message=' . $success_message);
   die();  //request handlers should die() when they complete their task
 }
 
