@@ -121,7 +121,7 @@ function kultuer_send_ticket_response_mail($_to, $subject, $message) {
     'Content-type: text/html; charset=UTF-8' . "\r\n" .
     'X-Mailer: PHP/' . phpversion();
    echo $message;
-  // mail($to, $subject, $message, $headers);
+  mail($to, $subject, $message, $headers);
 }
 
 add_action('template_redirect', function() {
