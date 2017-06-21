@@ -5,7 +5,6 @@ require_once('lib/roles.php');
 require_once('lib/routes.php');
 require_once('lib/kultuer.php');
 require_once('lib/template-helper.php');
-require_once('lib/bootstrap-nav-walker.php');
 
 define('AVATAR_SIZE', 64);
 

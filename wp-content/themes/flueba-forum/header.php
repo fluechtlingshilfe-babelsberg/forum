@@ -21,7 +21,7 @@
 			<a class="nav-link" href="<?= wp_logout_url() ?>">Logout</a>
 		    </li>
 		    <li class="nav-item">
-			<a class="nav-link" href="<?= admin_url('profile.php') ?>"><span class="fa fa-cog"></span></a>
+			<a class="nav-link" href="<?= get_permalink(get_page_by_path('profile')) ?>"><span class="fa fa-cog"></span></a>
 		    </li>
 		</ul>
 

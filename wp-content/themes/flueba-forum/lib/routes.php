@@ -47,3 +47,33 @@ add_action("admin_post_edit_comment", function() {
     exit;
 });
 
+function redirect_to_profile($error = '') {
+    wp_redirect(add_query_arg(empty($error) ? 'success' : 'error', urlencode($error),
+        get_permalink(get_page_by_path('profile'))));
+}
+
+add_action("admin_post_edit_account", function() {
+    if (!isset($_POST["edit_account_nonce_field"]) ||
+        !wp_verify_nonce($_POST['edit_account_nonce_field'], 'edit_account_nonce')) {
+        wp_die("Unauthorized account edit attempt");
+    }
+
+    if ($_POST["password"] != $_POST["password_confirm"]) {
+        redirect_to_profile('Passwörter stimmen nicht überein');
+        exit;
+    }
+
+    if (strlen($_POST["password"]) < 8) {
+        redirect_to_profile('Passwort sollte mindestens 8 Zeichen haben.');
+        exit;
+    }
+
+    $user = wp_get_current_user();
+    wp_set_password($_POST["password"], $user->ID);
+    wp_set_auth_cookie($user->ID);
+    wp_set_current_user($user->ID);
+    do_action('wp_login', $user->user_login, $user);
+
+    redirect_to_profile();
+});
+
