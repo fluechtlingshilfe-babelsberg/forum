@@ -7,6 +7,9 @@
 <div class="col-md-8 kultuer">
 
 <?php
+if(isset($_GET['message'])) {
+  ?> <div class="alert alert-success" role="alert"><?=$_GET['message'] ?></div> <?php
+}
 while (have_posts()) {
     the_post();
     $date = strtotime(get_field('date')); ?>
