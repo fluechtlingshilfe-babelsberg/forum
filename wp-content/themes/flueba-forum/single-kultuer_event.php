@@ -7,7 +7,9 @@
   <li class="breadcrumb-item active"><?php the_title() ?></li>
 </ol>
 
-<div class="post-about clearfix mb-1">
+<div class="container-fluid">
+  <div class="row">
+  <div class="col-sm-12 post-about clearfix mb-1">
   <?php the_post_thumbnail('post-thumbnail', array('style' => 'width: auto; height: 300px', 'class' => 'float-sm-right')) ?>
 
   <h2><?php the_title() ?></h2>
@@ -61,5 +63,6 @@
         </div>
       </div>
     </div>
-
-    <?php get_footer() ?>
+  </div>
+</div>
+<?php get_footer() ?>
