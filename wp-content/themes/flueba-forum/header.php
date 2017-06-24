@@ -25,9 +25,14 @@
 		    </li>
 		</ul>
 
-		<a href="http://fluechtlingshilfe-babelsberg.de" target="_blank" class="mr-3 float-xs-right">
-		    <img src="<?= get_stylesheet_directory_uri().'/images/fhb-logo.jpg' ?>" height="40">
-		</a>
+		<div class="mr-3 float-xs-right">
+		    <a href="http://fluechtlingshilfe-babelsberg.de" target="_blank">
+			<img src="<?= get_stylesheet_directory_uri().'/images/fhb-logo.jpg' ?>" height="40">
+		    </a>
+		    <a href="https://www.start-with-a-friend.de/standorte/potsdam/" target="_blank">
+			<img src="<?= get_stylesheet_directory_uri().'/images/swaf.jpg' ?>" height="70" style="margin-left: 10px; margin-top: -15px; position: relative; top: 10px">
+		    </a>
+		</div>
 		<a style="color: inherit" href="<?php bloginfo('url') ?>">
 		    <h1 class="title"><span style="color: #095e66">Potsdam</span> <span style="color: #0e8a97">Tandems</span></h1>
 		</a>

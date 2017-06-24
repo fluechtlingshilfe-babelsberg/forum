@@ -4,7 +4,12 @@
     'post_type' => 'kultuer_event'
 )); ?>
 
-<div class="col-md-8 kultuer">
+<div class="container kultuer mt-3">
+<h2>KULTÜR Veranstaltungen</h2>
+<hr>
+<div class="row">
+<p class="col-md-10 offset-md-1 mb-3">Hier finden Sie eine Liste der in Kürze stattfindenden Veranstaltungen. Wählen Sie eine der Veranstaltungen aus, um Tickets anzufragen. Sie werden danach auf Ihrer E-Mail-Adresse, mit der Sie sich im Forum angemeldet haben, von KULTÜR benachrichtigt, ob Ihnen die angefragten Karten zur Verfügung gestellt werden können.</p>
+</div>
 
 <?php
 while (have_posts()) {
