@@ -46,8 +46,9 @@ wp_reset_postdata(); ?>
     <span class="fa fa-calendar"></span>
     Veranstaltungen
 
-    <a class="category-list-item" href="#">Vollversammlung <small class="text-muted">Mon, 26. Feb</small></a>
-    <a class="category-list-item" href="#">Sommerfest <small class="text-muted">Fri, 4. Jul</small></a>
+    <a target="_blank" class="category-list-item" href="<?php get_stylesheet_directory_uri() . '/downoads/Einladung zum Sommerfest AWO am Brauhausberg.pdf' ?>">
+	AWO Sommerfest <small class="text-muted">Do, 13. Juli</small>
+    </a>
 </div>
 
 <?php if (is_singular('post'))
