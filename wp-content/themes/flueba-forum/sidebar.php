@@ -5,6 +5,7 @@
     Unbeantwortete Fragen
 <?php
 $posts = get_posts(array(
+    'post_status' => 'any',
     'orderby' => array('comment_count' => 'ASC', 'date' => 'DESC')
 ));
 foreach ($posts as $post) {
