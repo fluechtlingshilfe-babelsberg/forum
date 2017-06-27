@@ -23,6 +23,9 @@
 		    <li class="nav-item">
 			<a class="nav-link" href="<?= admin_url('profile.php') ?>"><span class="fa fa-cog"></span></a>
 		    </li>
+		    <li class="nav-item">
+			<a class="nav-link" target="_blank" title="Feedback/Problem berichten" href="mailto:feedback@potsdamtandems.de"><span class="fa fa-envelope"></span></a>
+		    </li>
 		</ul>
 
 		<div class="mr-3 float-xs-right">

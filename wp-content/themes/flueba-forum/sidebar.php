@@ -46,8 +46,12 @@ wp_reset_postdata(); ?>
     <span class="fa fa-calendar"></span>
     Veranstaltungen
 
-    <a target="_blank" class="category-list-item" href="<?php get_stylesheet_directory_uri() . '/downoads/Einladung zum Sommerfest AWO am Brauhausberg.pdf' ?>">
+    <a target="_blank" class="category-list-item" href="<?= get_stylesheet_directory_uri() . '/downloads/Einladung zum Sommerfest AWO am Brauhausberg.pdf' ?>">
 	AWO Sommerfest <small class="text-muted">Do, 13. Juli</small>
+    </a>
+
+    <a target="_blank" class="category-list-item" href="<?= get_stylesheet_directory_uri() . '/downloads/Supervision_Richtig ankommen_10.07.2017.pdf' ?>">
+	Supervision <small class="text-muted">Mo, 10. Juli</small>
     </a>
 </div>
 

@@ -144,7 +144,7 @@ function the_colored_categories() {
     <div class="row">
     <?php foreach ($categories as $category) { ?>
 	<a style="width: <?= $width ?>; float: left; color: #fff; display: block; overflow: hidden" href="<?= site_url("?category=$category->slug") ?>">
-	    <h4 style="background-color: <?= $colors[$i] ?>; font-weight: 200; padding: 32px 24px 40px 24px" class="mb-0">
+	    <h4 style="background-color: <?= $colors[$i] ?>; font-weight: 200; padding: 32px 24px <?= strlen($category->name) > 12 ? '14px' : '40px' // hack! if we wrap on two lines, decrease bottom padding. proper way would be to have a fixed size and let text flow freely ?> 24px" class="mb-0">
 		<?= $category->name ?>
 	    </h4>
 	    <div style="background-color: <?= $lighter_colors[$i] ?>; padding: 8px 24px; box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.2)">
