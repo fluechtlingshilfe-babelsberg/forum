@@ -14,9 +14,10 @@
 		    <li class="nav-item">
 			<a class="nav-link" href="<?= site_url() ?>">Forum</a>
 		    </li>
+		    <!--KULTÜR Events. Enable once we have cards.
 		    <li class="nav-item">
 			<a class="nav-link" href="<?= get_permalink(get_page_by_path('kultuer-veranstaltungen')) ?>">KULTÜR Veranstaltungen</a>
-		    </li>
+		    </li>-->
 		    <li class="nav-item">
 			<a class="nav-link" href="<?= wp_logout_url() ?>">Logout</a>
 		    </li>
