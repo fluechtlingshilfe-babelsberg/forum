@@ -202,4 +202,3 @@ function the_post_preview() { ?>
     <hr>
 </div>
 <?php }
-

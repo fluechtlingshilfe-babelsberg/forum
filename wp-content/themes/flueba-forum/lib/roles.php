@@ -26,7 +26,14 @@ foreach (array(
     'publish_kultuer_events',
     'read_kultuer_events',
     'read_private_kultuer_events',
-    'delete_kultuer_events'
+    'delete_kultuer_events',
+    'edit_event',
+    'edit_events',
+    'edit_others_events',
+    'publish_events',
+    'read_events',
+    'read_private_events',
+    'delete_events'
 ) as $cap)
     $admin->add_cap($cap);
 
@@ -114,4 +121,3 @@ remove_role('subscriber');
 remove_role('author');
 remove_role('editor');
 remove_role('contributor');
-
