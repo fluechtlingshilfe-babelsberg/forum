@@ -27,7 +27,13 @@ foreach (array(
     'read_kultuer_events',
     'read_private_kultuer_events',
     'delete_kultuer_events',
-    'edit_news'
+    'edit_news',
+    'edit_news_single',
+    'edit_others_news',
+    'publish_news',
+    'read_news',
+    'read_private_news',
+    'delete_news',
 ) as $cap)
     $admin->add_cap($cap);
 
