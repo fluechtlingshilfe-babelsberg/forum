@@ -132,6 +132,10 @@ function the_category_color($category = null) {
  */
 function the_colored_categories() {
     $categories = get_the_categories();
+    if (count($categories) < 1) {
+	echo "Es wurden noch keine Kategorien angelegt!";
+	return;
+    }
     $colors = color_array();
     $lighter_colors = lighter_color_array();
     $darker_colors = darker_color_array();

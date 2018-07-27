@@ -4,6 +4,7 @@
 require_once('lib/roles.php');
 require_once('lib/routes.php');
 require_once('lib/kultuer.php');
+require_once('lib/news.php');
 require_once('lib/template-helper.php');
 require_once('lib/bootstrap-nav-walker.php');
 
@@ -63,3 +64,18 @@ function flueba_on_public_page(){
     return is_singular('kultuer_event') || is_page('kultuer-veranstaltungen');
 }
 
+function the_news_meta() { ?>
+<p class="text-muted">
+    <?php if (get_field('place')) { ?>
+    <span class="fa fa-map-marker"></span> <?php the_field('place') ?>
+    &nbsp;
+    <?php } ?>
+    <?php if (get_field('time')) { ?>
+    <span class="fa fa-clock-o"></span> <?php the_field('time') ?> Uhr
+    &nbsp;
+    <?php } ?>
+    <?php if (get_field('attachment')) { ?>
+    <span class="fa fa-paperclip"></span> <a href="<?= get_field('attachment')['url'] ?>"><?= get_field('attachment')['title'] ?></a>
+    <?php } ?>
+</p>
+<?php }

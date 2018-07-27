@@ -12,6 +12,9 @@
 	    <div class="cleafix">
 		<ul class="nav nav-pills float-sm-right">
 		    <li class="nav-item">
+			<a class="nav-link" href="<?= get_permalink(get_page_by_path('news')) ?>">Neues</a>
+		    </li>
+		    <li class="nav-item">
 			<a class="nav-link" href="<?= site_url() ?>">Forum</a>
 		    </li>
 		    <!--KULTÜR Events. Enable once we have cards.

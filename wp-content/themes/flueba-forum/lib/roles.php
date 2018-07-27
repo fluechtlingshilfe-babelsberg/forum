@@ -26,7 +26,8 @@ foreach (array(
     'publish_kultuer_events',
     'read_kultuer_events',
     'read_private_kultuer_events',
-    'delete_kultuer_events'
+    'delete_kultuer_events',
+    'edit_news'
 ) as $cap)
     $admin->add_cap($cap);
 
@@ -64,7 +65,8 @@ $moderator = add_role('moderator', 'Moderator', array(
 
     'edit_own_comment' => true,
     'edit_others_comment' => true,
-    'see_admin_bar' => true
+    'see_admin_bar' => true,
+    'edit_news' => true
 ));
 
 $member = add_role('member', 'Mitglied', array(

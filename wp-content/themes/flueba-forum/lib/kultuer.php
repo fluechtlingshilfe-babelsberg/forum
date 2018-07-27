@@ -2,7 +2,7 @@
 
 register_post_type('kultuer_event', array(
     'public' => true,
-    'label' => 'Veranstaltungen',
+    'label' => 'KULTÜR Veranstaltungen',
     'menu_icon' => 'dashicons-calendar-alt',
     'map_meta_cap' => true,
     'supports' => array('title', 'editor', 'thumbnail'),
